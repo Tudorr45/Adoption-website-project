@@ -1,0 +1,40 @@
+<%- include ("../partials/header"); -%>
+<style>
+    body{
+        margin-top:20px;
+        color: #1a202c;
+        background-color: #e2e8f0;
+    }
+</style>
+</head>
+<body>
+
+<%- include ("../partials/navbar"); -%>
+
+<main class="content pt-5">
+    <div class="container p-0">
+
+        <h1 class="h3 mb-3">Mesaje</h1>
+
+        <div class="card col-12 col-lg-5 col-xl-3 border-right">
+            <div class="row g-0">
+                    <% conversations.forEach(function(conversation){ %>
+                        <% conversation.speakers.forEach(function (speaker) { %>
+                            <% if(speaker._id != user.id){ %>
+                                <a href="/profile/<%= user._id %>/inbox/<%= conversation._id %>" class="list-group-item list-group-item-action border-0">
+                                    <div class="d-flex align-items-center">
+                                        <img src="/image/<%= speaker.photo %>" class="rounded-circle mr-1" width="40" height="40">
+                                        <div class="flex-grow-1 ms-3">
+                                            <%= speaker.name %>
+                                        </div>
+                                    </div>
+                                </a>
+                            <% } %>
+                        <% }); %>
+                    <% }); %>
+            </div>
+        </div>
+    </div>
+</main>
+
+<%- include ("../partials/footer"); -%>

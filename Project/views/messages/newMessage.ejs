@@ -1,0 +1,26 @@
+<%- include ("../partials/header"); -%>
+<style>
+    body{
+        color: #1a202c;
+        background-color: #e2e8f0;
+    }
+</style>
+</head>
+<body>
+
+<%- include ("../partials/navbar"); -%>
+
+<div class="container pt-5 mt-5">
+    <div class="row">
+        <h2 style="text-align: center;">Trimite un mesaj către <%= user.name %></h2>
+        <div class="card mx-auto py-3" style="background-color: transparent; width: 30%; margin: 25px auto;">
+            <form action="/messages/<%= user._id %>" method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="message[text]" placeholder="Mesajul tău">
+                </div>
+                <span class="mx-5"></span><button class="btn btn-primary btn-default mt-3 mx-5">Trimite!</button>
+            </form>
+        </div>
+    </div>
+</div>
+<%- include ("../partials/footer"); -%>

@@ -1,0 +1,215 @@
+<%- include ("../partials/header"); -%>
+<style xmlns="http://www.w3.org/1999/html">
+    body {
+        color: #1a202c;
+        background-color: #e2e8f0;
+    }
+</style>
+</head>
+<%- include ("../partials/navbar"); -%>
+
+<form action="/pets/<%= pet._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+    <div class="container mt-5 pt-4 px-5">
+        <div class="container px-5">
+            <div class="row">
+                <div class="col-8">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-camera"></i></span>
+                        <input type="file" class="form-control" id="file" name="file">
+                    </div>
+                    <div class="d-flex justify-content-center" style="background-color: #F0F8FF; padding: 20px 20px 20px 20px;">
+                        <img class="img-fluid"  src="/image/<%= pet.image %>">
+                    </div>
+                    <div style="background-color: #F0F8FF;">
+                        <div class="row mt-3">
+                            <div class="col-lg-4 col-sm-6">
+                                <dt>Specie</dt>
+                                <dd>
+                                    <select class="form-select" id="species" name="pet[species]">
+                                        <% if(pet.species === "Caine"){ %>
+                                            <option>Caine</option>
+                                            <option>Pisica</option>
+                                        <% }else{ %>
+                                            <option>Pisica</option>
+                                            <option>Caine</option>
+                                        <% } %>
+                                    </select>
+                                </dd>
+                            </div>
+                            <div class="col-lg-4 col-sm-6">
+                                <dt>Nivel de maturitate</dt>
+                                <dd>
+                                    <select class="form-select" id="maturity" name="pet[maturity]">
+                                        <% if(pet.maturity === "Pui"){ %>
+                                            <option>Pui</option>
+                                            <option>Junior</option>
+                                            <option>Matur</option>
+                                            <option>Batran</option>
+                                        <% }else if(pet.maturity === "Junior"){ %>
+                                            <option>Pui</option>
+                                            <option selected>Junior</option>
+                                            <option>Matur</option>
+                                            <option>Batran</option>
+                                        <% }else if(pet.maturity === "Matur"){ %>
+                                            <option>Pui</option>
+                                            <option>Junior</option>
+                                            <option selected>Matur</option>
+                                            <option>Batran</option>
+                                        <% }else{ %>
+                                            <option>Pui</option>
+                                            <option>Junior</option>
+                                            <option>Matur</option>
+                                            <option selected>Batran</option>
+                                        <% } %>
+                                    </select>
+                                </dd>
+                            </div>
+                            <div class="col-lg-4 col-sm-6">
+                                <dt>Mărime</dt>
+                                <dd>
+                                    <select class="form-select" id="size" name="pet[size]">
+                                        <% if(pet.size === "Talie mica"){ %>
+                                            <option>Talie mica</option>
+                                            <option>Talie medie</option>
+                                            <option>Talie mare</option>
+                                        <% }else if(pet.size === "Talie medie"){ %>
+                                            <option>Talie mica</option>
+                                            <option selected>Talie medie</option>
+                                            <option>Talie mare</option>
+                                        <% }else{ %>
+                                            <option>Talie mica</option>
+                                            <option>Talie medie</option>
+                                            <option selected>Talie mare</option>
+                                        <% } %>
+                                    </select>
+                                </dd>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-6">
+                                <dt>Sex</dt>
+                                <dd>
+                                    <select class="form-select" id="gender" name="pet[gender]">
+                                        <% if(pet.gender === "Mascul"){ %>
+                                            <option>Mascul</option>
+                                            <option>Femela</option>
+                                        <% }else{ %>
+                                            <option>Mascul</option>
+                                            <option selected>Femela</option>
+                                        <% } %>
+                                    </select>
+                                </dd>
+                            </div>
+                            <div class="col-lg-4 col-sm-6">
+                                <dt>Culoare</dt>
+                                <dd>
+                                    <input type="text" class="pb-2" name="pet[color]" value="<%= pet.color %>">
+                                </dd>
+                            </div>
+                            <div class="col-lg-4 col-sm-6">
+                                <dt>Adăpost</dt>
+                                <dd>
+                                    <select class="form-select" id="shelter" name="pet[hasShelter]">
+                                        <% if(pet.hasShelter){ %>
+                                            <option>Cu adapost</option>
+                                            <option>Fara adapost</option>
+                                        <% }else{ %>
+                                            <option>Cu adapost</option>
+                                            <option selected>Fara adapost</option>
+                                        <% } %>
+                                    </select>
+                                </dd>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-3 col-sm-4 col-xs-4 mx-auto">
+                                <% if(pet.saved){ %>
+                                    <input class="form-check-input ms-5" type="radio" value="notSaved" id="notSaved" name="isSaved">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        In cautare de stapan
+                                    </label>
+                                    <input class="form-check-input" type="radio" value="saved" id="saved" name="isSaved" checked>
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Salvat
+                                    </label>
+                                <% } else { %>
+                                    <input class="form-check-input ms-5" type="radio" value="notSaved" id="notSaved" name="isSaved" checked>
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        In cautare de stapan
+                                    </label>
+                                    <input class="form-check-input" type="radio" value="saved" id="saved" name="isSaved">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Salvat
+                                    </label>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="d-inline">
+                            <button class="btn btn-lg btn-success btn-default">Salvează!</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <h1><input type="text" name="pet[name]" value="<%= pet.name %>"></h1>
+                    <textarea class="form-control" rows="6" name="pet[description]"><%= pet.description %></textarea>
+                    <div class="card mx-auto py-3" style="background-color: #F0F8FF;">
+                        <a href="/profile/<%= author._id %>">
+                            <div id="circle" class="mx-auto" style="
+                                    height:120px;
+                                    width:120px;
+                                    border-radius:50%;
+                                    background-image: url('/image/<%= author.photo %>');
+                                    background-position:center;
+                                    background-size:cover;">
+                            </div>
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><%= author.name %></h5>
+                            <p class="text-center">
+                                <% if(author.isAssociation){ %>
+                                    <i class="fas fa-users"></i> Asociatie
+                                <% }else{ %>
+                                    <i class="fas fa-user"></i> Persoana fizica
+                                <% } %>
+                            <p class="text-center">
+                                <i class="fas fa-map-marker-alt"></i> <%= author.city %>, Jud. <%= author.county %>
+                            </p>
+                            <% if(currentUser && pet.author.id.equals(currentUser._id)){%>
+                            <% } else { %>
+                                <p class="text-center"><a class="btn btn-outline-primary" href="tel:<%= author.phone %>"><i class="fas fa-phone"></i> <%= author.phone %></a></p>
+                                <span class="me-1"></span><a class="btn btn-primary ms-5" href="/messages/new/<%= pet.author.id %>"><i class="far fa-envelope"></i> Trimite un mesaj autorului</a>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+    var nav = document.querySelector('nav');
+    var items = document.querySelectorAll('.nav-item a')
+    var brand = document.querySelector('.navbar-brand');
+
+    window.addEventListener('scroll', function () {
+        if (window.pageYOffset > 10) {
+            nav.classList.add('bg-light', 'shadow');
+            brand.classList.add('text-dark');
+            items.forEach((item) => {
+                item.classList.remove("text-white");
+                item.classList.add("text-dark");
+            });
+        } else {
+            nav.classList.remove('bg-light', 'shadow');
+            brand.classList.remove('text-dark');
+            items.forEach((item) => {
+                item.classList.remove("text-dark");
+                item.classList.add("text-white");
+            });
+        }
+    });
+</script>
+<%- include ("../partials/footer"); -%>

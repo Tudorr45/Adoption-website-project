@@ -1,0 +1,193 @@
+<%- include ("./partials/header"); -%>
+    <style>
+        body{
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+<%- include ("./partials/navbar"); -%>
+
+<h1 class="text-center my-5">Crează un cont</h1>
+<form action="/register" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 mx-auto">
+            <label for="name" class="form-label">Nume/denumire*</label>
+            <div class="input-group has-validation">
+                <span class="input-group-text"><i class="far fa-user"></i></span>
+                <input type="text" class="form-control" id="name" name="name" required>
+                <div class="valid-feedback">
+                    In regula!
+                </div>
+                <div class="invalid-feedback">
+                    Nume/denumire invalide.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 mx-auto">
+            <label for="username" class="form-label">Nume utilizator*</label>
+            <div class="input-group has-validation">
+                <span class="input-group-text">@</span>
+                <input type="text" class="form-control" id="username" name="username" aria-describedby="inputGroupPrepend" required>
+                <div class="valid-feedback">
+                    In regula!
+                </div>
+                <div class="invalid-feedback">
+                    Nume utilizator invalid.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 mx-auto">
+            <label for="password" class="form-label">Parola*</label>
+            <div class="input-group has-validation">
+                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                <input type="password" class="form-control" id="password" name="password" required>
+                <div class="valid-feedback">
+                    In regula!
+                </div>
+                <div class="invalid-feedback">
+                    Parola invalida.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 mx-auto">
+            <label for="phone" class="form-label">Telefon*</label>
+            <div class="input-group has-validation">
+                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                <input type="text" class="form-control" id="phone" name="phone" aria-describedby="inputGroupPrepend" required>
+                <div class="valid-feedback">
+                    In regula!
+                </div>
+                <div class="invalid-feedback">
+                    Numar de telefon invalid.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 mx-auto">
+            <label for="file" class="form-label">Poza profil</label>
+            <input type="file" class="form-control" id="file" name="file">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 mx-auto">
+            <label for="validationCustom04" class="form-label">Judet*</label>
+            <select class="form-select" id="county" name="county" required>
+                <option selected disabled value="">Alege...</option>
+                <option>Alba</option>
+                <option>Arad</option>
+                <option>Argeș</option>
+                <option>Bacău</option>
+                <option>Bihor</option>
+                <option>Bistrița-Năsăud</option>
+                <option>Botoșani</option>
+                <option>Brăila</option>
+                <option>Brașov</option>
+                <option>Buzău</option>
+                <option>Călărași</option>
+                <option>Caraș-Severin</option>
+                <option>Cluj</option>
+                <option>Constanța</option>
+                <option>Covasna</option>
+                <option>Dâmbovița</option>
+                <option>Dolj</option>
+                <option>Galați</option>
+                <option>Giurgiu</option>
+                <option>Gorj</option>
+                <option>Harghita</option>
+                <option>Hunedoara</option>
+                <option>Ialomița</option>
+                <option>Iași</option>
+                <option>Ilfov</option>
+                <option>Maramureș</option>
+                <option>Mehedinți</option>
+                <option>Mureș</option>
+                <option>Neamț</option>
+                <option>Olt</option>
+                <option>Prahova</option>
+                <option>Sălaj</option>
+                <option>Satu Mare</option>
+                <option>Sibiu</option>
+                <option>Suceava</option>
+                <option>Teleorman</option>
+                <option>Timiș</option>
+                <option>Tulcea</option>
+                <option>Vâlcea</option>
+                <option>Vaslui</option>
+                <option>Vrancea</option>
+                <option>Municipiul București</option>
+            </select>
+            <div class="valid-feedback">
+                In regula
+            </div>
+            <div class="invalid-feedback">
+                Introduceti un judet valid.
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 mx-auto">
+            <label for="city" class="form-label">Oras*</label>
+            <div class="input-group has-validation">
+                <input type="text" class="form-control" id="city" name="city" aria-describedby="inputGroupPrepend" required>
+                <div class="valid-feedback">
+                    In regula!
+                </div>
+                <div class="invalid-feedback">
+                    Introduceti un oras valid.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 mx-auto">
+            <span class="pe-3"></span>
+            <input class="form-check-input ms-5" type="radio" value="person" id="person" name="isAssociation" checked>
+            <label class="form-check-label me-5" for="flexCheckDefault">
+                Persoana
+            </label>
+            <input class="form-check-input" type="radio" value="association" id="association" name="isAssociation">
+            <label class="form-check-label" for="flexCheckDefault">
+                Asociatie
+            </label>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 mx-auto">
+            <button class="btn btn-primary col-lg-12" type="submit">Înregistrare</button>
+        </div>
+    </div>
+    <a class="text-center pe-4" href="/login">Ai deja un cont?</a>
+</form>
+
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>
+<%- include ("./partials/footer"); -%>

@@ -1,0 +1,103 @@
+<%- include ("../partials/header"); -%>
+<style>
+    body{
+        color: #1a202c;
+        background-color: #e2e8f0;
+        margin-top: 100px;
+    }
+</style>
+</head>
+<%- include ("../partials/navbar"); -%>
+
+<div class="container mt-5 pt-4 px-5">
+    <div class="container px-5">
+    <div class="row">
+        <div class="col-8">
+            <div class="d-flex justify-content-center" style="background-color: #F0F8FF; padding: 20px 20px 20px 20px;">
+                <img class="img-fluid" style="max-height: 600px" src="/image/<%= pet.image %>">
+            </div>
+            <div style="background-color: #F0F8FF;">
+                <div class="row mt-3 pt-2 ms-5">
+                    <div class="col-lg-4 col-sm-6">
+                        <dt>Specie</dt>
+                        <dd><%= pet.species %></dd>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <dt>Nivel de maturitate</dt>
+                        <dd><%= pet.maturity %></dd>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <dt>Mărime</dt>
+                        <dd><%= pet.size %></dd>
+                    </div>
+                </div>
+                <div class="row ms-5">
+                    <div class="col-lg-4 col-sm-6">
+                        <dt>Sex</dt>
+                        <dd><%= pet.gender %></dd>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <dt>Culoare</dt>
+                        <dd><%= pet.color %></dd>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <dt>Adăpost</dt>
+                        <% if(pet.hasShelter){ %>
+                            <dd>Cu adapost</dd>
+                        <% }else{ %>
+                            <dd>Fara adapost</dd>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="d-inline">
+                    <% if(currentUser && pet.author.id.equals(currentUser._id)){%>
+                        <a class="btn btn-warning" href="/pets/<%= pet._id %>/edit/"><i class="fas fa-edit"></i> Editeaza</a>
+                        <form id="delete-form" action="/pets/<%= pet._id %>?_method=delete" class="d-inline" method="POST">
+                            <button class="btn btn-danger"><i class="fas fa-trash-alt"></i> Sterge anunt</button>
+                        </form>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div style="background-color: #F0F8FF;">
+                <h1 class="text-center"><%= pet.name %></h1>
+                <p class="text-break mx-2"><%= pet.description %></p>
+            </div>
+            <div class="card mx-auto py-3" style="background-color: #F0F8FF;">
+                <a href="/profile/<%= author._id %>">
+                    <div id="circle" class="mx-auto" style="
+                    height:120px;
+                    width:120px;
+                    border-radius:50%;
+                    background-image: url('/image/<%= author.photo %>');
+                    background-position:center;
+                    background-size:cover;">
+                    </div>
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title text-center"><%= author.name %></h5>
+                    <p class="text-center">
+                    <% if(author.isAssociation){ %>
+                            <i class="fas fa-users"></i> Asociatie
+                    <% }else{ %>
+                            <i class="fas fa-user"></i> Persoana fizica
+                    <% } %>
+                    <p class="text-center">
+                        <i class="fas fa-map-marker-alt"></i> <%= author.city %>, Jud. <%= author.county %>
+                    </p>
+                    <% if(currentUser && pet.author.id.equals(currentUser._id)){%>
+                    <% } else { %>
+                    <p class="text-center"><a class="btn btn-outline-primary" href="tel:<%= author.phone %>"><i class="fas fa-phone"></i> <%= author.phone %></a></p>
+                    <span class="ms-3"></span><a class="btn btn-primary ms-4" href="/messages/new/<%= pet.author.id %>"><i class="far fa-envelope"></i> Trimite un mesaj autorului</a>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<%- include ("../partials/footer"); -%>

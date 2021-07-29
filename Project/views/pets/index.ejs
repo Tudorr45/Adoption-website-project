@@ -1,0 +1,116 @@
+<%- include ("../partials/header"); -%>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <style>
+        body{
+            color: #1a202c;
+            background-color: #e2e8f0;
+        }
+
+        .imageColumn{
+            position: relative;
+            width: 300px;
+            height: 250px;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 13px;
+            right: 0;
+            opacity: 0;
+            width: 92%;
+            height: 95%;
+            transition: .5s ease;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .imageColumn:hover .overlay {
+            opacity: 1;
+        }
+
+        .text {
+            color: white;
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .savedPets{
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<%- include ("../partials/navbar"); -%>
+
+<div class="container me-5 mt-5 pt-4">
+    <div class="row">
+        <h1 class="my-4">Prietenii in căutare de stăpân</h1>
+        <div class="d-grid col-3">
+            <a class="btn btn-primary" href="/pets/new"><i class="fas fa-plus"></i> Adaugă un anunț</a>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <% pets.results.forEach(function(pet){ %>
+        <div class="imageColumn col-lg-3 col-md-6 col-sm-6 pb-3">
+            <img class="savedPets" src="/image/<%= pet.image %>">
+            <a href="/pets/<%= pet._id %>">
+                <div class="overlay">
+                    <div class="text fs-4"><%= pet.name %><br><%= pet.gender %><br><%= pet.size %></div>
+                </div>
+            </a>
+        </div>
+        <% }); %>
+    </div>
+
+    <div class="row gallery-bottom mt-3 mb-5">
+        <div class="col-lg-3 col-md-6 col-sm-6 mx-auto ps-5">
+            <ul class="pagination">
+                <li>
+                    <% if(page > 1){ %>
+                        <a href="http://localhost:3000/pets?page=<%= page-1 %>&limit=12" aria-label="Previous">
+                            <span aria-hidden="true">«</span>
+                        </a>
+                    <% } %>
+                </li>
+
+                <% if(page == 1){ %>
+                    <li>
+                        <a href="http://localhost:3000/pets?page=<%= page-1 %>&limit=12" aria-label="Previous" style="visibility: hidden">
+                            <span aria-hidden="true">«</span>
+                        </a>
+                    </li>
+                    <li class="active"><a href="http://localhost:3000/pets?page=<%= page %>&limit=<%= limit %>"><%= page %></a></li>
+                    <li><a href="http://localhost:3000/pets?page=<%= page + 1 %>&limit=<%= limit %>"><%= page + 1 %></a></li>
+                    <li><a href="http://localhost:3000/pets?page=<%= page + 2 %>&limit=<%= limit %>"><%= page + 2 %></a></li>
+                <% } else { %>
+                    <% if(page >= nrOfPets/limit){%>
+                        <li><a href="http://localhost:3000/pets?page=<%= page - 2 %>&limit=<%= limit %>"><%= page - 2 %></a></li>
+                        <li><a href="http://localhost:3000/pets?page=<%= page - 1 %>&limit=<%= limit %>"><%= page - 1 %></a></li>
+                        <li class="active"><a href="http://localhost:3000/pets?page=<%= page %>&limit=<%= limit %>"><%= page %></a></li>
+                    <% } else{ %>
+                        <li><a href="http://localhost:3000/pets?page=<%= page - 1 %>&limit=<%= limit %>"><%= page - 1 %></a></li>
+                        <li class="active"><a href="http://localhost:3000/pets?page=<%= page %>&limit=<%= limit %>"><%= page %></a></li>
+                        <li><a href="http://localhost:3000/pets?page=<%= page + 1 %>&limit=<%= limit %>"><%= page + 1 %></a></li>
+                    <% } %>
+                <% } %>
+                <li>
+                    <% if(page < nrOfPets/limit){%>
+                        <a href="http://localhost:3000/pets?page=<%= page+1 %>&limit=12" aria-label="Next">
+                            <span aria-hidden="true">»</span>
+                        </a>
+                    <% } %>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<%- include ("../partials/footer"); -%>

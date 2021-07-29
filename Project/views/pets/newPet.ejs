@@ -1,0 +1,174 @@
+<%- include ("../partials/header"); -%>
+    <style>
+        body{
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+<%- include ("../partials/navbar"); -%>
+
+<h1 class="text-center my-5">Adaugă un animaluț</h1>
+<form action="/pets" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 mx-auto">
+            <label for="name" class="form-label">Nume*</label>
+            <div class="input-group has-validation">
+                <span class="input-group-text"><i class="fas fa-paw"></i></span>
+                <input type="text" class="form-control" id="name" name="name" required>
+                <div class="valid-feedback">
+                    In regulă!
+                </div>
+                <div class="invalid-feedback">
+                    Nume invalid.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 mx-auto">
+            <label for="description" class="form-label">Descriere*</label>
+            <div class="input-group has-validation">
+                <span class="input-group-text"><i class="far fa-file-alt"></i></span>
+                <textarea class="form-control" id="description" name="description" aria-describedby="inputGroupPrepend" required></textarea>
+                <div class="valid-feedback">
+                    In regulă!
+                </div>
+                <div class="invalid-feedback">
+                    Descriere invalidă.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 mx-auto">
+            <label for="species" class="form-label">Specie*</label>
+            <div class="input-group has-validation">
+                <span class="input-group-text"><i class="fas fa-dna"></i></span>
+                <select class="form-select" id="species" name="species" required>
+                    <option>Caine</option>
+                    <option>Pisica</option>
+                </select>
+                <div class="valid-feedback">
+                    In regulă!
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 mx-auto">
+            <label for="maturity" class="form-label">Maturitate*</label>
+            <div class="input-group has-validation">
+                <span class="input-group-text"><i class="fas fa-leaf"></i></span>
+                <select class="form-select" id="maturity" name="maturity" required>
+                    <option>Pui</option>
+                    <option>Junior</option>
+                    <option>Matur</option>
+                    <option>Batran</option>
+                </select>
+                <div class="valid-feedback">
+                    In regulă!
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 mx-auto">
+            <label for="size" class="form-label">Mărime*</label>
+            <div class="input-group has-validation">
+                <span class="input-group-text"><i class="fas fa-arrows-alt-v"></i></span>
+                <select class="form-select" id="size" name="size" required>
+                    <option>Talie mica</option>
+                    <option>Talie medie</option>
+                    <option>Talie mare</option>
+                </select>
+                <div class="valid-feedback">
+                    In regula!
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 mx-auto">
+            <label for="gender" class="form-label">Sex*</label>
+            <div class="input-group has-validation">
+                <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+                <select class="form-select" id="gender" name="gender" required>
+                    <option>Mascul</option>
+                    <option>Femela</option>
+                </select>
+                <div class="valid-feedback">
+                    In regulă!
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 mx-auto">
+            <label for="color" class="form-label">Culoare*</label>
+            <div class="input-group has-validation">
+                <span class="input-group-text"><i class="fas fa-palette"></i></span>
+                <input type="text" class="form-control" id="color" name="color" required>
+                <div class="valid-feedback">
+                    In regulă!
+                </div>
+                <div class="invalid-feedback">
+                    Culoare invalidă.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 mx-auto">
+            <label for="shelter" class="form-label">Adăpost*</label>
+            <div class="input-group has-validation">
+                <span class="input-group-text"><i class="fas fa-home"></i></span>
+                <select class="form-select" id="shelter" name="shelter" required>
+                    <option>Cu adapost</option>
+                    <option>Fara adapost</option>
+                </select>
+                <div class="valid-feedback">
+                    In regulă!
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 mx-auto">
+            <label for="file" class="form-label">Imagine</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-camera"></i></span>
+                <input type="file" class="form-control" id="file" name="file">
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 mx-auto">
+            <button class="btn btn-primary col-lg-12" type="submit">Adaugă!</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>
+<%- include ("../partials/footer"); -%>

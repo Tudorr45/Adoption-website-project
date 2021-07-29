@@ -1,0 +1,148 @@
+<%- include ("partials/header"); -%>
+<style>
+    .banner-image{
+        background-image: url('http://localhost:3000/images/landingJumbotron.jpg');
+        background-size: cover;
+    }
+
+    .imageColumn{
+        position: relative;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        transition: .5s ease;
+        background-color: rgba(0,0,0,0.7);
+    }
+
+    .imageColumn:hover .overlay {
+        opacity: 1;
+    }
+
+    .text {
+        color: white;
+        font-size: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .savedPets{
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+</style>
+</head>
+<body>
+
+<%- include ("partials/navbar"); -%>
+
+<!-- Banner Image  -->
+<div class="banner-image w-100 vh-100 d-flex justify-content-center align-items-center">
+    <div class="content text-center px-5">
+        <h1 style="color: #F0F8FF; text-shadow: 2px 2px #000000;">‟Adopția unui câine nu va schimba lumea,<br>dar cu siguranță lumea se va schimba pentru el”</h1>
+        <a class="btn btn-outline-dark" style="font-weight: bolder;" href="/pets?page=1&limit=12">Vezi anunțurile</a>
+    </div>
+</div>
+
+<div class="containter">
+    <h1 class="text-center pt-3">Implică-te</h1>
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-6">
+            <img src="http://localhost:3000/images/thinkingDog.jpg" width="100%">
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6 my-auto">
+            <ul class="mx-5 fs-2">
+                <li class="my-3"><a href="/pets?page=1&limit=12">Adoptă</a></li>
+                <li><a href="/pets/new">Oferă spre adopție</a></li>
+                <li class="my-3"><a href="/donations">Donează către una din asociațiile noastre</a></li>
+            </ul>
+        </div>
+    </div>
+    <h1 class="text-center">Ultimele adopții</h1>
+    <% var i = 0 %>
+    <div class="row">
+    <% pets.forEach(function(pet){ %>
+        <% if(i < 8){ %>
+        <% if(i == 4){ %>
+        </div>
+        <div class="row">
+        <% } %>
+        <div class="imageColumn col-lg-3 col-md-6 col-sm-6 px-0">
+            <img class="savedPets" src="/image/<%= pet.image %>">
+            <div class="overlay" style="width: 100%; height: 100%;">
+                <div class="text fs-2"><%= pet.name %><br><%= pet.gender %></div>
+            </div>
+        </div>
+        <% i++; %>
+    <% }}); %>
+    </div>
+</div>
+
+<hr class="mt-5">
+<footer class="text-lg-start text-muted pt-5 position-absolute start-50 translate-middle">
+    <div class="text-center">
+        <a href="https://www.facebook.com/staicu.tudor/" class="me-4 text-reset">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/" class="me-4 text-reset">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/tudor-staicu-496ab91a3/" class="me-4 text-reset">
+            <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/Tudorr45" class="me-4 text-reset">
+            <i class="fab fa-github"></i>
+        </a>
+    </div>
+    <div class="text-center p-2">
+        © 2021 Copyright:
+        <a class="text-reset fw-bold" href="#">TudSoft</a>
+    </div>
+</footer>
+
+<script type="text/javascript">
+    var nav = document.querySelector('nav');
+    var items = document.querySelectorAll('.nav-item a');
+    var brand = document.querySelector('.navbar-brand');
+    nav.classList.remove('bg-light', 'shadow');
+    brand.classList.remove('text-dark');
+    items.forEach((item) => {
+        item.classList.remove("text-dark");
+        item.classList.add("text-white");
+    });
+
+
+    window.addEventListener('scroll', function () {
+        if (window.pageYOffset > 10) {
+            nav.classList.add('bg-light', 'shadow');
+            brand.classList.add('text-dark');
+            items.forEach((item) => {
+                item.classList.remove("text-white");
+                item.classList.add("text-dark");
+            });
+        } else {
+            nav.classList.remove('bg-light', 'shadow');
+            brand.classList.remove('text-dark');
+            items.forEach((item) => {
+                item.classList.remove("text-dark");
+                item.classList.add("text-white");
+            });
+        }
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+</body>
+</html>
